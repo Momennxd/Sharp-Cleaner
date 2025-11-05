@@ -1,0 +1,108 @@
+﻿
+
+JUNK DELETER SYSTEM : 
+
+
+categories to consider:
+-System junk
+-Application and Browser junk 
+-Log and dump files
+
+each category has its own specific junk file types and locations on the system.
+locations are mostly fixed and will be predefined in the junk file cleaner tool.
+
+====> Application and Browser junk files may have fixed locations but can also vary based on user settings and installed applications.
+>>> there should be a mechanism to allow users to specify additional locations or file types to scan for junk files in this category.
+>>> system should be open to add more supported apps and browsers in future updates to clean the junk with fixed paths.
+
+
+============================
+- there should cleaning modes (just adjusting the clean filter and what to clean ) such as:
+
+1- Quick Clean : scans and deletes the most common junk files in a short time
+
+2- Deep Clean : performs a thorough scan of all junk file categories and locations {
+	for ex deletes all files including recently created or modified files and might force close running applications to delete files in use
+	or mark them for deletion on next system restart
+}
+
+3- Custom Clean : allows users to select specific categories and locations to scan and delete junk files
+============================
+
+
+init step : 
+1- make sure you have admin rights to delete x category junk files
+2- close all running applications to avoid conflicts
+
+
+
+scan step :
+1- open your junk file cleaner tool
+2- select the category of junk files you want to scan for (e.g., system junk, application junk, browser junk, log and dump files)
+3- start the scan process and wait for it to complete
+
+
+
+review step :
+1- once the scan is complete, review the list of detected junk files
+2- ensure that no important files are mistakenly identified as junk
+3- deselect any files you want to keep
+
+
+
+
+Filter step : 
+-there are certain files that should not be deleted that have some characteristics such as:
+created within the last x TimeSpan
+modified within the last x TimeSpan
+file size greater than x MB
+protected system files
+Files in use by running applications
+
+
+
+
+Backup stage : ON HOLD.....
+before deleting, consider creating a backup of the files marked for deletion
+
+
+
+
+
+3-Deletion stage :
+-after applying filters and creating backups (if necessary), proceed to delete the selected junk files
+
+===========================
+
+process steps : 
+
+1-Initialization : creates the prescan layer to (get the privilige to do future tasks and close spicific running apps)
+
+
+
+
+
+
+
+
+
+
+													/// categories	///
+					=====================================================================================
+							 
+					Temp	|		Cashe	 |		Logs	|	  Dumps		 |	recycle Bin		| more....
+							 
+					=====================================================================================
+									
+												WE GOT TWO MAIN METHODS 
+										 Analyze(AZFilter)   and    clean (CFilter)
+	
+													[FILTER MASK]
+								<<< APPLY FILTERS ON HOW TO CLEAN AND WHICH CATEGORIES TO >>>
+									Filters are settings or flags set for each cleaing mode
+									for ex Deep clean runs on all categ and force delete
+											
+															^
+															|
+															|
+									INIT THE CLEANER (admin mode + closing x processes...etc)
