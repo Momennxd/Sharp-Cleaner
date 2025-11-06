@@ -49,12 +49,13 @@
     <Compile Include="core\Files\File Interfaces\File_Interface.cs" />
     <Compile Include="core\Core Services\Cleaner_Interface.cs" />
     <Compile Include="core\glob\NAMESPACES.cs" />
-    <Compile Include="core\Services Filters\Analyzer Filter\Generic\AnalyzerFilter.cs" />
+    <Compile Include="core\Services Filters\Analyzer Filter\Generic\data\AnalyzerFilterFlags.cs" />
+    <Compile Include="core\Services Filters\Analyzer Filter\Generic\services\AnalyzerService.cs" />
+    <Compile Include="core\Services Filters\Analyzer Filter\Generic\services\IAnalyzerFilterService.cs" />
     <Compile Include="core\Services Filters\Cleaner Filter\Generic\CleanerFilter.cs" />
     <Compile Include="libs\uShell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="systems\glob\SENUMS.cs" />
-    <Compile Include="systems\recycle bin\IRecyclebinService.cs" />
     <Compile Include="systems\recycle bin\RecyclebinService.cs" />
   </ItemGroup>
   <ItemGroup>

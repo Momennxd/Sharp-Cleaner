@@ -1,5 +1,7 @@
 ﻿using core.concrete;
+using core.core.Core_Services;
 using core.core.File_Interfaces;
+using core.core.Services_Filters.Analyzer_Filter.Generic;
 using core.interfaces;
 using core.libs;
 using Core.Core.ServicesFilters.AnalyzerFilter.Generic;
@@ -11,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace core.systems.recycle_bin
 {
-    public class RecyclebinService : IRecyclebinService
+    public class RecyclebinService : IAnalyzer, ICleaner
     {
-        IFileFacotry FF;
+        IFileFactory FF;
         
-        public RecyclebinService(IFileFacotry _ff)
+        public RecyclebinService(IFileFactory _ff)
         {
             FF = _ff;
         }
@@ -25,13 +27,44 @@ namespace core.systems.recycle_bin
 
         }
 
-        public IList<IFile> Analyze(AnalyzerFilterFlagsBase AZFilter)
+        public  IList<IFile> Analyze(AnalyzerFilterFlagsBase AZfilter, IAnalyzerFilterService AZFileService)
         {
-            return SHELL_LAYER.SDirectoryItems(FF, include_folders: true, NAMESPACES.RECYCLE_BIN_SHELL_NAMESPACE);
+            IList<Tuple<string, bool>> items = uSHELL_LAYER.DIR.SHLGetNSPaths(NAMESPACES.RECYCLE_BIN_SHELL_NAMESPACE, true);
+
+
+            var dirs = new List<IFile>();
+            var files = new List<IFile>();
+
+            foreach (var item in items)
+            {
+                var path = item.Item1;
+                var isDir = item.Item2;
+
+                if (isDir)
+                {
+                    var dir = AZFileService.FilterDirectoryRecursiveInclusive(FF, path, AZfilter);                   
+                    dirs.AddRange(dir);
+                    
+                }
+                else
+                {
+                    var file = AZFileService.FilterFile(FF, path, AZfilter);
+                    if (file != null)
+                    {
+                        files.Add(file);
+                    }
+                }
+            }
+         
+            return files.Concat(dirs).ToList();
         }
+
+
+
+
         public ulong Clean(CleanerFilterFlagsBase CFilter)
         {
-            return (ulong)SHELL_LAYER.API_SHEmptyRecycleBin();
+            return (ulong)uSHELL_LAYER.API.API_SHEmptyRecycleBin();
         }
     }
 }

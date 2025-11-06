@@ -20,13 +20,23 @@ namespace core.concrete
 
         public bool IsFolder { get; set; }
 
-        public DFile(string path, long size, string FriendlyTypeName, string name, bool isFolder)
+        public DateTime? CreationTime { get; set; } 
+
+        public DateTime? LastWriteTime { get; set; }
+        public DateTime? LastAccessTime { get; set; }
+
+
+        public DFile(string path, long size, string FriendlyTypeName, string name, bool isFolder, DateTime? creationTime, DateTime? lastWriteTime,
+            DateTime? lastAccessTime)
         {
             this.Path = path;
             this.FriendlyTypeName = FriendlyTypeName;
             this.Size = size;
             Name = name;
             IsFolder = isFolder;
+            CreationTime = creationTime;
+            LastWriteTime = lastWriteTime;
+            LastAccessTime = lastAccessTime;
         }
     }
 

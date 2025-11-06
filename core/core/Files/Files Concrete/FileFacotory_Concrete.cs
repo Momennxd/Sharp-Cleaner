@@ -9,11 +9,18 @@ using System.Threading.Tasks;
 
 namespace core.core.Concrete
 {
-    public class FileFactory : IFileFacotry
+    /// <summary>
+    /// Factory responsible for creating IFile instances.
+    /// Keeps creation logic centralized and consistent.
+    /// </summary>
+    public class FileFactory : IFileFactory
     {
-        public IFile CreateFile(string path, long size, string FriendlyTypeName, string name, bool isFolder)
+        
+        public IFile CreateFile(string path, long size, string friendlyTypeName, string name, bool isFolder,
+            DateTime? creationTime = null, DateTime? lastWriteTime = null, DateTime? lastAccessTime = null)
         {
-            return new DFile(path, size, FriendlyTypeName, name, isFolder);
+            return new DFile(path, size, friendlyTypeName, name, isFolder, creationTime, lastWriteTime, lastAccessTime);
+
         }
     }
 }

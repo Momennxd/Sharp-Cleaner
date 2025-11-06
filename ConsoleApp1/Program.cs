@@ -1,4 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using core.core.Concrete;
+using core.core.Services_Filters.Analyzer_Filter.Generic;
+using core.systems.recycle_bin;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,10 +15,20 @@ class Program
     [STAThread]
     static void Main()
     {
-        foreach (var info in GetClearableUserTempFolders())
+        //foreach (var info in GetClearableUserTempFolders())
+        //{
+        //    Console.WriteLine($"User: {info.UserName}\n  SID: {info.Sid}\n  Profile: {info.ProfilePath}\n  Temp: {info.TempPath}\n");
+        //}
+
+        RecyclebinService recyclebinService = new RecyclebinService(new FileFactory());
+        IAnalyzerFilterService analyzerFilterService = new core.core.Services_Filters.Analyzer_Filter.Generic.services.AnalyzerService();
+        var files = recyclebinService.Analyze(new Core.Core.ServicesFilters.AnalyzerFilter.Generic.AnalyzerFilterFlagsBase(), analyzerFilterService);
+
+        foreach (var file in files)
         {
-            Console.WriteLine($"User: {info.UserName}\n  SID: {info.Sid}\n  Profile: {info.ProfilePath}\n  Temp: {info.TempPath}\n");
+            Console.WriteLine($"File: {file.Name}, Size: {file.Size} bytes, Path: {file.Path}, IsFolder: {file.IsFolder}");
         }
+
 
     }
 

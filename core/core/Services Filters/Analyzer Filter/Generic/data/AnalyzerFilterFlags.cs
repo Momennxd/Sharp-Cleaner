@@ -17,7 +17,8 @@ namespace Core.Core.ServicesFilters.AnalyzerFilter.Generic
             TimeSpan? maxFileAge = null,
             TimeSpan? minFileAge = null,
             long maxFileSizeBytes = long.MaxValue,
-            long minFileSizeBytes = 0)
+            long minFileSizeBytes = 0,
+            bool include_folders = true)
         {
             if (MaxFileSizeBytes != null && MaxFileSizeBytes < 0)
                 throw new ArgumentException("MaxFileSizeBytes cannot be negative.", nameof(maxFileSizeBytes));
@@ -36,10 +37,12 @@ namespace Core.Core.ServicesFilters.AnalyzerFilter.Generic
             MinFileAge = minFileAge;
             MaxFileSizeBytes = maxFileSizeBytes;
             MinFileSizeBytes = minFileSizeBytes;
+            this.Include_folders = include_folders;
         }
 
         public bool IncludeMarkedForDeletion { get; }
-
+        public bool Include_folders { get; }
+        
         public TimeSpan? MaxFileAge { get; }
 
         public TimeSpan? MinFileAge { get; }
