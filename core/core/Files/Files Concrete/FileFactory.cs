@@ -20,7 +20,6 @@ namespace core.core.Concrete
             DateTime? creationTime = null, DateTime? lastWriteTime = null, DateTime? lastAccessTime = null)
         {
             return new DFile(path, size, friendlyTypeName, name, isFolder, creationTime, lastWriteTime, lastAccessTime);
-
         }
     }
 }

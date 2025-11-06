@@ -1,4 +1,5 @@
-﻿using core.core.File_Interfaces;
+﻿using core.concrete;
+using core.core.File_Interfaces;
 using core.interfaces;
 using Core.Core.ServicesFilters.AnalyzerFilter.Generic;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace core.core.Services_Filters.Analyzer_Filter.Generic.services
 {
-    public class AnalyzerService : IAnalyzerFilterService
+    public class AnalyzerFilterService : IAnalyzerFilterService
     {
         public IEnumerable<IFile> FilterFiles(IFileFactory factory, IEnumerable<string> FilesPaths, AnalyzerFilterFlagsBase AZfilter)
         {

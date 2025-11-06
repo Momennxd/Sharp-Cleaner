@@ -42,18 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="core\Core Services\Analyzer_Interface.cs" />
-    <Compile Include="core\Files\Files Concrete\DFile_concrete.cs" />
-    <Compile Include="core\Files\Files Concrete\FileFacotory_Concrete.cs" />
-    <Compile Include="core\Files\File Interfaces\FileFactory_Interface.cs" />
-    <Compile Include="core\Files\File Interfaces\File_Interface.cs" />
-    <Compile Include="core\Core Services\Cleaner_Interface.cs" />
+    <Compile Include="core\Core Services\IAnalyzer.cs" />
+    <Compile Include="core\Files\Files Concrete\DFile.cs" />
+    <Compile Include="core\Files\Files Concrete\FileFactory.cs" />
+    <Compile Include="core\Files\File Interfaces\IFileFactory.cs" />
+    <Compile Include="core\Files\File Interfaces\IFile.cs" />
+    <Compile Include="core\Core Services\ICleaner.cs" />
     <Compile Include="core\glob\NAMESPACES.cs" />
-    <Compile Include="core\Services Filters\Analyzer Filter\Generic\data\AnalyzerFilterFlags.cs" />
-    <Compile Include="core\Services Filters\Analyzer Filter\Generic\services\AnalyzerService.cs" />
+    <Compile Include="core\Services Filters\Analyzer Filter\Generic\data\AnalyzerFilterFlagsBase.cs" />
+    <Compile Include="core\Services Filters\Analyzer Filter\Generic\services\AnalyzerFilterService.cs" />
     <Compile Include="core\Services Filters\Analyzer Filter\Generic\services\IAnalyzerFilterService.cs" />
-    <Compile Include="core\Services Filters\Cleaner Filter\Generic\CleanerFilter.cs" />
-    <Compile Include="libs\uShell.cs" />
+    <Compile Include="core\Services Filters\Cleaner Filter\Generic\CleanerFilterFlagsBase.cs" />
+    <Compile Include="libs\uSHELL_LAYER.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="systems\glob\SENUMS.cs" />
     <Compile Include="systems\recycle bin\RecyclebinService.cs" />

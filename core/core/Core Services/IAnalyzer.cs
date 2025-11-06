@@ -13,8 +13,6 @@ namespace core.core.Core_Services
 {
     public interface IAnalyzer
     {
-        IList<IFile> Analyze(AnalyzerFilterFlagsBase AZfilter, IAnalyzerFilterService AZFilterService);
-            
-   
+        IEnumerable<IFile> Analyze(AnalyzerFilterFlagsBase AZfilter, IAnalyzerFilterService AZFilterService);        
     }
 }

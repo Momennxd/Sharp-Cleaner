@@ -1,6 +1,8 @@
 ﻿using core.core.Concrete;
 using core.core.Services_Filters.Analyzer_Filter.Generic;
+using core.core.Services_Filters.Analyzer_Filter.Generic.services;
 using core.systems.recycle_bin;
+using Core.Core.ServicesFilters.AnalyzerFilter.Generic;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -21,8 +23,11 @@ class Program
         //}
 
         RecyclebinService recyclebinService = new RecyclebinService(new FileFactory());
-        IAnalyzerFilterService analyzerFilterService = new core.core.Services_Filters.Analyzer_Filter.Generic.services.AnalyzerService();
-        var files = recyclebinService.Analyze(new Core.Core.ServicesFilters.AnalyzerFilter.Generic.AnalyzerFilterFlagsBase(), analyzerFilterService);
+
+        IAnalyzerFilterService analyzerFilterService = new AnalyzerFilterService();
+
+        var files = recyclebinService.Analyze(new AnalyzerFilterFlagsBase(), analyzerFilterService);
+
 
         foreach (var file in files)
         {

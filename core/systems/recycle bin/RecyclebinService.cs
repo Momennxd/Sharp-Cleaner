@@ -27,7 +27,7 @@ namespace core.systems.recycle_bin
 
         }
 
-        public  IList<IFile> Analyze(AnalyzerFilterFlagsBase AZfilter, IAnalyzerFilterService AZFileService)
+        public  IEnumerable<IFile> Analyze(AnalyzerFilterFlagsBase AZfilter, IAnalyzerFilterService AZFileService)
         {
             IList<Tuple<string, bool>> items = uSHELL_LAYER.DIR.SHLGetNSPaths(NAMESPACES.RECYCLE_BIN_SHELL_NAMESPACE, true);
 
