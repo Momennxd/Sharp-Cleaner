@@ -43,16 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="core\Core Services\IAnalyzer.cs" />
-    <Compile Include="core\Files\Files Concrete\DFile.cs" />
-    <Compile Include="core\Files\Files Concrete\FileFactory.cs" />
-    <Compile Include="core\Files\File Interfaces\IFileFactory.cs" />
-    <Compile Include="core\Files\File Interfaces\IFile.cs" />
+    <Compile Include="core\Files\File Data\DFile.cs" />
+    <Compile Include="core\Files\File Factory\FileFactory.cs" />
+    <Compile Include="core\Files\File Factory\IFileFactory.cs" />
+    <Compile Include="core\Files\File Data\IFile.cs" />
     <Compile Include="core\Core Services\ICleaner.cs" />
-    <Compile Include="core\glob\NAMESPACES.cs" />
+    <Compile Include="libs\NAMESPACES.cs" />
     <Compile Include="core\Services Filters\Analyzer Filter\Generic\data\AnalyzerFilterFlagsBase.cs" />
     <Compile Include="core\Services Filters\Analyzer Filter\Generic\services\AnalyzerFilterService.cs" />
     <Compile Include="core\Services Filters\Analyzer Filter\Generic\services\IAnalyzerFilterService.cs" />
-    <Compile Include="core\Services Filters\Cleaner Filter\Generic\CleanerFilterFlagsBase.cs" />
+    <Compile Include="core\Services Filters\Cleaner Filter\Generic\data\CleanerFilterFlagsBase.cs" />
+    <Compile Include="core\Services Filters\Cleaner Filter\Generic\services\CleanerFilterService.cs" />
+    <Compile Include="core\Services Filters\Cleaner Filter\Generic\services\ICleanerFilterService.cs" />
+    <Compile Include="libs\APIs\APIRecyclebin.cs" />
     <Compile Include="libs\uSHELL_LAYER.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="systems\glob\SENUMS.cs" />
@@ -61,5 +64,6 @@
   <ItemGroup>
     <Content Include="systems\desgin.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

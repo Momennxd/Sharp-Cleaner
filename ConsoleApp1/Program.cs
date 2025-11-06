@@ -27,14 +27,17 @@ class Program
         IAnalyzerFilterService analyzerFilterService = new AnalyzerFilterService();
 
         var files = recyclebinService.Analyze(new AnalyzerFilterFlagsBase(), analyzerFilterService);
-
+        long s = 0;
 
         foreach (var file in files)
         {
             Console.WriteLine($"File: {file.Name}, Size: {file.Size} bytes, Path: {file.Path}, IsFolder: {file.IsFolder}");
+            s += file.Size;
         }
 
-
+        Console.WriteLine();
+        Console.WriteLine($"Total files in Recycle Bin: {files?.Count()}, Total Size: {s} bytes");
+        Console.WriteLine(recyclebinService.Clean(new CleanerFilterFlagsBase(), null));
     }
 
     /// <summary>

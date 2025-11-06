@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -63,32 +64,6 @@ namespace core.libs
 
 
 
-        public static class API
-        {
-
-            [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
-            private static extern int SHEmptyRecycleBin(IntPtr hwnd, string pszRootPath, uint dwFlags);
-
-            // Flags for SHEmptyRecycleBin
-            private const uint SHERB_NOCONFIRMATION = 0x00000001;
-            private const uint SHERB_NOPROGRESSUI = 0x00000002;
-            private const uint SHERB_NOSOUND = 0x00000004;
-
-            /// <summary>
-            /// Empties the Recycle Bin for all drives without displaying confirmation or progress UI.
-            /// </summary>
-            /// <remarks>This method performs the operation silently, without any user interface prompts or
-            /// sounds.</remarks>
-            /// <returns>An integer value indicating the result of the operation. A return value of zero indicates success.
-            /// <br> S_OK = 0x00000000 Success // E_FAIL = 0x80004005 // E_ACCESSDENIED = 0x80070005</br></returns>
-            public static int API_SHEmptyRecycleBin()
-            {
-                return SHEmptyRecycleBin(IntPtr.Zero, null,
-                SHERB_NOCONFIRMATION | SHERB_NOPROGRESSUI | SHERB_NOSOUND);
-
-
-            }
-        }
     }
 
 }
