@@ -1,14 +1,4 @@
-﻿using core.core.Concrete;
-using core.core.Services_Filters.Analyzer_Filter.Generic;
-using core.core.Services_Filters.Analyzer_Filter.Generic.services;
-using core.systems.recycle_bin;
-using Core.Core.ServicesFilters.AnalyzerFilter.Generic;
-using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
+﻿using Microsoft.Win32;
 
 class Program
 {
@@ -17,50 +7,27 @@ class Program
     [STAThread]
     static void Main()
     {
-        //foreach (var info in GetClearableUserTempFolders())
-        //{
-        //    Console.WriteLine($"User: {info.UserName}\n  SID: {info.Sid}\n  Profile: {info.ProfilePath}\n  Temp: {info.TempPath}\n");
-        //}
-
-        RecyclebinService recyclebinService = new RecyclebinService(new FileFactory());
-
-        IAnalyzerFilterService analyzerFilterService = new AnalyzerFilterService();
-
-        var files = recyclebinService.Analyze(new AnalyzerFilterFlagsBase(), analyzerFilterService);
-        long s = 0;
-
-        foreach (var file in files)
+        foreach (var info in GetClearableUserTempFolders())
         {
-            Console.WriteLine($"File: {file.Name}, Size: {file.Size} bytes, Path: {file.Path}, IsFolder: {file.IsFolder}");
-            s += file.Size;
+            Console.WriteLine($"User: {info.UserName}\n  SID: {info.Sid}\n  Profile: {info.ProfilePath}\n  Temp: {info.TempPath}\n");
         }
-
-        Console.WriteLine();
-        Console.WriteLine($"Total files in Recycle Bin: {files?.Count()}, Total Size: {s} bytes");
-        Console.WriteLine(recyclebinService.Clean(new CleanerFilterFlagsBase(), null));
     }
 
-    /// <summary>
-    /// Returns enumerable of real, local user profiles that have temp folders you can inspect/clean.
-    /// Each item contains: username, SID, profile path, and resolved temp path.
-    /// Skips known system/service accounts and profiles without NTUSER.DAT (not a real user hive).
-    /// </summary>
+   
+
     public static IList<(string UserName, string Sid, string ProfilePath, string TempPath)> GetClearableUserTempFolders()
     {
         const string ProfileListKey = @"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList";
         IList<(string, string, string, string)> res = new List<(string, string, string, string)>();
-        // SIDs to always skip (well-known)
         var skipSids = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "S-1-5-18", // Local System (systemprofile)
-            "S-1-5-19", // LocalService
-            "S-1-5-20"  // NetworkService
+           
         };
 
         // usernames/folders to skip
         var skipNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "Default", "DefaultUser0", "DefaultAccount", "Public", "All Users", "Default User", "WDAGUtilityAccount"
+            
         };
 
         using (var profilesKey = Registry.LocalMachine.OpenSubKey(ProfileListKey))
@@ -95,8 +62,8 @@ class Program
                         if (profilePath.IndexOf(@"\ServiceProfiles\", StringComparison.OrdinalIgnoreCase) >= 0) continue;
 
                         // Ensure this is a normal user profile by checking for NTUSER.DAT (user registry hive)
-                        string ntUserFile = Path.Combine(profilePath, "NTUSER.DAT");
-                        if (!File.Exists(ntUserFile)) continue;
+                       // string ntUserFile = Path.Combine(profilePath, "NTUSER.DAT");
+                        //if (!File.Exists(ntUserFile)) continue;
 
                         // Try to get per-user TEMP from HKEY_USERS\<SID>\Volatile Environment\TEMP
                         string tempPath = null;
